@@ -9,14 +9,22 @@ Sistem ini memodelkan **26 proses bisnis (BPMN As-Is)**, mengelola **30 model da
 ## 📑 Daftar Isi
 1. [Tentang Proyek](#-tentang-proyek)
 2. [Cakupan Proses Bisnis (BPMN)](#-cakupan-proses-bisnis-bpmn)
-3. [Struktur Direktori Repository](#-struktur-direktori-repository)
-4. [Prasyarat Sistem (Prerequisites)](#-prasyarat-sistem-prerequisites)
-5. [Panduan Instalasi & Setup Odoo Lokal](#-panduan-instalasi--setup-odoo-lokal)
-6. [Pemasangan Modul Custom `bmt_kediri`](#-pemasangan-modul-custom-bmt_kediri)
-7. [Import Otomatis Dataset Dummy (47 Tabel)](#-import-otomatis-dataset-dummy-47-tabel)
-8. [Panduan Troubleshooting & Solusi Error Lengkap](#-panduan-troubleshooting--solusi-error-lengkap)
-9. [Skenario Demo untuk Presentasi Dosen](#-skenario-demo-untuk-presentasi-dosen)
-10. [Tim Pengembang](#-tim-pengembang)
+3. [Dokumentasi Lengkap 34 Modul](#-dokumentasi-lengkap-34-modul)
+4. [Struktur Direktori Repository](#-struktur-direktori-repository)
+5. [Prasyarat Sistem (Prerequisites)](#-prasyarat-sistem-prerequisites)
+6. [Panduan Instalasi & Setup Odoo Lokal](#-panduan-instalasi--setup-odoo-lokal)
+7. [Pemasangan Modul Custom `bmt_kediri`](#-pemasangan-modul-custom-bmt_kediri)
+8. [Import Otomatis Dataset Dummy (47 Tabel)](#-import-otomatis-dataset-dummy-47-tabel)
+9. [Panduan Troubleshooting & Solusi Error Lengkap](#-panduan-troubleshooting--solusi-error-lengkap)
+10. [Skenario Demo untuk Presentasi Dosen](#-skenario-demo-untuk-presentasi-dosen)
+11. [Tim Pengembang](#-tim-pengembang)
+
+---
+
+## 📚 Dokumentasi Lengkap 34 Modul
+Seluruh perancangan, fungsionalitas, evaluasi skor, dan panduan navigasi langkah-demi-langkah tersedia di folder `docs/`:
+* 📘 **[Panduan Implementasi & Navigasi 34 Modul Odoo](docs/Panduan_Implementasi_dan_Navigasi_Modul_Odoo_BMT_Kediri.md)**: Panduan detail menu path, URL langsung, dan cara mengoperasikan 20 modul bawaan + 14 modul kustom studio + Executive Dashboard.
+* 📊 **[Laporan Evaluasi & Audit 34 Modul Odoo](docs/Laporan_Evaluasi_Modul_Odoo_BMT_Kediri.md)**: Audit real-time database, nilai fungsionalitas (A/A+), integrasi 47 sheet dataset simulasi, pembersihan 100% data demo bawaan, dan pemetaan Enterprise Bridge.
 
 ---
 
@@ -81,6 +89,7 @@ Modul kustom `bmt_kediri` mencakup seluruh alur bisnis kantor cabang:
 │       │   └── ir.model.access.csv  # Hak Akses Model (CRUD)
 │       └── views/                   # Tampilan XML Odoo (Form, List, Menu)
 │           ├── crm_views.xml
+│           ├── dashboard_views.xml  # Tampilan Dashboard KPI Cabang
 │           ├── deposito_views.xml
 │           ├── hcm_views.xml
 │           ├── logistik_views.xml
@@ -90,9 +99,16 @@ Modul kustom `bmt_kediri` mencakup seluruh alur bisnis kantor cabang:
 │           ├── rekening_views.xml
 │           ├── reksa_dana_views.xml
 │           └── teller_views.xml
+├── docs/
+│   ├── Panduan_Implementasi_dan_Navigasi_Modul_Odoo_BMT_Kediri.md # Panduan akses & URL modul
+│   └── Laporan_Evaluasi_Modul_Odoo_BMT_Kediri.md                  # Laporan evaluasi 34 modul
 ├── data/
 │   ├── data_simulasi_bmt_kediri.xlsx # Dataset 47 sheet data simulasi
-│   └── import_all_data.py           # Script Python untuk auto-populate ke Odoo
+│   ├── import_all_data.py           # Auto-populate 14 modul kustom
+│   ├── import_standard_modules.py   # Auto-populate 20 modul bawaan community
+│   ├── setup_surveys.py             # Setup survey profil risiko & seleksi HR
+│   ├── setup_leaves_discuss.py      # Setup cuti tahunan & channel koordinasi
+│   └── execute_company_fix.py       # Pengunci entitas tunggal Bank Mandiri Taspen
 ├── .gitignore                       # Filter file sensitif & cache
 └── README.md                        # Dokumentasi utama proyek
 ```
@@ -228,6 +244,16 @@ Berikut adalah rangkuman masalah nyata yang sering terjadi saat instalasi Odoo d
   ```powershell
   icacls "C:\Program Files\Odoo 19.0.xxxx\server\odoo\addons" /grant "Users:(OI)(CI)F" /T
   ```
+
+### 6. Masalah Modul Bawaan Terlihat Kosong (Multi-Company Context & Cuti Pribadi)
+* **Penyebab**: Saat database baru diinisialisasi, Odoo membuat perusahaan demo bawaan (`ID Company` atau `My Company Chicago`). Jika sesi browser Anda aktif di dalam `ID Company`, Odoo menerapkan filter multi-company `WHERE company_id = 2`. Karena seluruh 47 dataset di-input ke perusahaan resmi **`Bank Mandiri Taspen KC Kediri`** (`company_id = 1`), modul bawaan (CRM, Employees, Purchase, Time Off, Accounting) akan menampilkan 0 data. Selain itu, pada modul **Time Off**, halaman default adalah `My Time` (cuti pribadi akun login), bukan cuti seluruh cabang.
+* **Solusi**:
+  1. Jalankan script pengunci entitas tunggal:
+     ```powershell
+     & "C:\Program Files\Odoo 19.0.xxxx\python\python.exe" data/execute_company_fix.py
+     ```
+  2. Tekan `Ctrl + F5` di browser.
+  3. Pada modul **Time Off**, klik tab menu atas **Overview** atau **Management → Time Off** untuk melihat seluruh pengajuan cuti staf cabang.
 
 ---
 
