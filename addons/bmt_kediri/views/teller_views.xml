@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Setoran -->
+    <record id="action_bmt_setoran" model="ir.actions.act_window">
+        <field name="name">Setoran Tunai</field>
+        <field name="res_model">bmt.transaksi.setoran</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_setoran_list" model="ir.ui.view">
+        <field name="name">bmt.transaksi.setoran.list</field>
+        <field name="model">bmt.transaksi.setoran</field>
+        <field name="arch" type="xml">
+            <list string="Transaksi Setoran Tunai">
+                <field name="name"/>
+                <field name="no_rekening"/>
+                <field name="tanggal_waktu"/>
+                <field name="nominal"/>
+                <field name="nama_penyetor"/>
+                <field name="saluran"/>
+                <field name="id_teller"/>
+                <field name="no_bukti"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Penarikan -->
+    <record id="action_bmt_penarikan" model="ir.actions.act_window">
+        <field name="name">Penarikan Tunai</field>
+        <field name="res_model">bmt.transaksi.penarikan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_penarikan_list" model="ir.ui.view">
+        <field name="name">bmt.transaksi.penarikan.list</field>
+        <field name="model">bmt.transaksi.penarikan</field>
+        <field name="arch" type="xml">
+            <list string="Transaksi Penarikan Tunai">
+                <field name="name"/>
+                <field name="no_rekening"/>
+                <field name="tanggal_waktu"/>
+                <field name="nominal"/>
+                <field name="saluran"/>
+                <field name="id_teller"/>
+                <field name="saldo_setelah_transaksi"/>
+                <field name="no_bukti"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Transfer -->
+    <record id="action_bmt_transfer" model="ir.actions.act_window">
+        <field name="name">Transfer Dana</field>
+        <field name="res_model">bmt.transaksi.transfer</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_transfer_list" model="ir.ui.view">
+        <field name="name">bmt.transaksi.transfer.list</field>
+        <field name="model">bmt.transaksi.transfer</field>
+        <field name="arch" type="xml">
+            <list string="Transaksi Transfer">
+                <field name="name"/>
+                <field name="no_rekening_asal"/>
+                <field name="bank_tujuan"/>
+                <field name="no_rekening_tujuan"/>
+                <field name="nama_penerima"/>
+                <field name="jenis_transfer"/>
+                <field name="nominal"/>
+                <field name="biaya_transfer"/>
+                <field name="status_transfer"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Persediaan Kas -->
+    <record id="action_bmt_kas" model="ir.actions.act_window">
+        <field name="name">Rekonsiliasi Kas Teller</field>
+        <field name="res_model">bmt.persediaan.kas</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_kas_list" model="ir.ui.view">
+        <field name="name">bmt.persediaan.kas.list</field>
+        <field name="model">bmt.persediaan.kas</field>
+        <field name="arch" type="xml">
+            <list string="Rekonsiliasi Kas">
+                <field name="name"/>
+                <field name="id_teller"/>
+                <field name="tanggal"/>
+                <field name="saldo_awal_kas"/>
+                <field name="total_setoran"/>
+                <field name="total_penarikan"/>
+                <field name="saldo_akhir_sistem"/>
+                <field name="saldo_fisik"/>
+                <field name="selisih"/>
+            </list>
+        </field>
+    </record>
+
+    <menuitem id="menu_bmt_setoran" name="Setoran Tunai" parent="menu_bmt_teller" action="action_bmt_setoran" sequence="10"/>
+    <menuitem id="menu_bmt_penarikan" name="Penarikan Tunai" parent="menu_bmt_teller" action="action_bmt_penarikan" sequence="20"/>
+    <menuitem id="menu_bmt_transfer" name="Transfer Dana" parent="menu_bmt_teller" action="action_bmt_transfer" sequence="30"/>
+    <menuitem id="menu_bmt_kas" name="Rekonsiliasi Kas Teller" parent="menu_bmt_teller" action="action_bmt_kas" sequence="40"/>
+</odoo>

@@ -1,0 +1,83 @@
+# ==========================================
+# Git Ignore - Odoo Enterprise & Custom Module
+# Proyek: Bank Mandiri Taspen KC Kediri
+# ==========================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# Odoo Specific Runtime & Stores
+*.log
+odoo.log
+odoo-server.log
+filestore/
+sessions/
+odoo_data/
+*.pid
+
+# Security & Local Credentials
+# (JANGAN PERNAH upload password database atau master secret asli)
+odoo.conf
+pgpass.conf
+*.key
+*.pem
+*.crt
+.env
+.env.*
+!.env.example
+
+# IDE & Editor Files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# Temporary files & Scratch
+tmp/
+temp/
+*.tmp
+*.bak

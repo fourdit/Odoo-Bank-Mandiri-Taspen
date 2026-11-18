@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_bmt_root" 
+              name="Bank Mandiri Taspen" 
+              web_icon="bmt_kediri,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Sub Menus -->
+    <menuitem id="menu_bmt_core_banking" name="Core Banking" parent="menu_bmt_root" sequence="10"/>
+    <menuitem id="menu_bmt_teller" name="Teller &amp; Kas" parent="menu_bmt_root" sequence="20"/>
+    <menuitem id="menu_bmt_crm" name="Pemasaran &amp; CRM" parent="menu_bmt_root" sequence="30"/>
+    <menuitem id="menu_bmt_investasi" name="Investasi APERD" parent="menu_bmt_root" sequence="40"/>
+    <menuitem id="menu_bmt_hcm" name="HCM &amp; Disiplin" parent="menu_bmt_root" sequence="50"/>
+    <menuitem id="menu_bmt_logistik" name="Logistik &amp; ATK" parent="menu_bmt_root" sequence="60"/>
+</odoo>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Suku Bunga -->
+    <record id="action_bmt_suku_bunga" model="ir.actions.act_window">
+        <field name="name">Master Suku Bunga</field>
+        <field name="res_model">bmt.suku.bunga</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_bmt_suku_bunga_list" model="ir.ui.view">
+        <field name="name">bmt.suku.bunga.list</field>
+        <field name="model">bmt.suku.bunga</field>
+        <field name="arch" type="xml">
+            <list string="Master Suku Bunga">
+                <field name="name"/>
+                <field name="nama_produk"/>
+                <field name="jenis_produk"/>
+                <field name="suku_bunga_persen_pa"/>
+                <field name="tenor_minimum"/>
+                <field name="tenor_maksimum"/>
+                <field name="plafon_minimum"/>
+                <field name="plafon_maksimum"/>
+                <field name="status_bunga"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Riwayat Perbankan SLIK -->
+    <record id="action_bmt_riwayat_perbankan" model="ir.actions.act_window">
+        <field name="name">Riwayat Perbankan (SLIK)</field>
+        <field name="res_model">bmt.riwayat.perbankan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_bmt_riwayat_perbankan_list" model="ir.ui.view">
+        <field name="name">bmt.riwayat.perbankan.list</field>
+        <field name="model">bmt.riwayat.perbankan</field>
+        <field name="arch" type="xml">
+            <list string="Riwayat Perbankan">
+                <field name="name"/>
+                <field name="nasabah_id"/>
+                <field name="tanggal_pengecekan"/>
+                <field name="kolektibilitas"/>
+                <field name="jumlah_fasilitas_aktif"/>
+                <field name="total_kewajiban"/>
+                <field name="status_daftar_hitam"/>
+                <field name="hasil_pengecekan"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Pinjaman -->
+    <record id="action_bmt_pinjaman" model="ir.actions.act_window">
+        <field name="name">Kredit &amp; Pinjaman</field>
+        <field name="res_model">bmt.pinjaman</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_bmt_pinjaman_list" model="ir.ui.view">
+        <field name="name">bmt.pinjaman.list</field>
+        <field name="model">bmt.pinjaman</field>
+        <field name="arch" type="xml">
+            <list string="Daftar Pengajuan Pinjaman">
+                <field name="name"/>
+                <field name="nasabah_id"/>
+                <field name="jenis_pinjaman"/>
+                <field name="plafon_diajukan"/>
+                <field name="plafon_disetujui"/>
+                <field name="tenor_bulan"/>
+                <field name="suku_bunga_persen"/>
+                <field name="angsuran_per_bulan"/>
+                <field name="status_pinjaman"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bmt_pinjaman_form" model="ir.ui.view">
+        <field name="name">bmt.pinjaman.form</field>
+        <field name="model">bmt.pinjaman</field>
+        <field name="arch" type="xml">
+            <form string="Form Pengajuan Pinjaman">
+                <header>
+                    <button name="action_approve" type="object" string="Persetujuan (Kepala Cabang)" class="btn-primary" invisible="status_pinjaman != 'Diajukan'"/>
+                    <button name="action_disburse" type="object" string="Cairkan Pinjaman" class="btn-success" invisible="status_pinjaman != 'Disetujui'"/>
+                    <field name="status_pinjaman" widget="statusbar" statusbar_visible="Diajukan,Disetujui,Aktif,Lunas"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Contoh: PNJ001"/></h1>
+                    </div>
+                    <group>
+                        <group string="Data Debitur &amp; Pengajuan">
+                            <field name="nasabah_id"/>
+                            <field name="jenis_pinjaman"/>
+                            <field name="id_suku_bunga"/>
+                            <field name="tanggal_pengajuan"/>
+                            <field name="tujuan_pinjaman"/>
+                            <field name="status_kelengkapan_berkas"/>
+                        </group>
+                        <group string="Plafon &amp; Kalkulasi Angsuran">
+                            <field name="plafon_diajukan"/>
+                            <field name="plafon_disetujui"/>
+                            <field name="tenor_bulan"/>
+                            <field name="suku_bunga_persen"/>
+                            <field name="angsuran_per_bulan" class="oe_subtotal_footer_separator"/>
+                        </group>
+                    </group>
+                    <group string="Akad &amp; Otorisasi">
+                        <group>
+                            <field name="no_surat_perjanjian"/>
+                            <field name="tanggal_perjanjian"/>
+                            <field name="tanggal_pencairan"/>
+                        </group>
+                        <group>
+                            <field name="id_cs_pemeriksa"/>
+                            <field name="id_verifikator"/>
+                            <field name="id_penyetuju"/>
+                            <field name="alasan_penolakan" invisible="status_pinjaman != 'Ditolak'"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_bmt_pinjaman" name="Kredit &amp; Pinjaman" parent="menu_bmt_core_banking" action="action_bmt_pinjaman" sequence="40"/>
+    <menuitem id="menu_bmt_suku_bunga" name="Master Suku Bunga" parent="menu_bmt_core_banking" action="action_bmt_suku_bunga" sequence="70"/>
+    <menuitem id="menu_bmt_slik" name="Riwayat Perbankan (SLIK)" parent="menu_bmt_core_banking" action="action_bmt_riwayat_perbankan" sequence="80"/>
+</odoo>

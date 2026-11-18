@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Stok Buku & Kartu -->
+    <record id="action_bmt_persediaan_buku" model="ir.actions.act_window">
+        <field name="name">Stok Buku Tabungan &amp; Kartu ATM</field>
+        <field name="res_model">bmt.persediaan.buku.atm</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_persediaan_buku_list" model="ir.ui.view">
+        <field name="name">bmt.persediaan.buku.atm.list</field>
+        <field name="model">bmt.persediaan.buku.atm</field>
+        <field name="arch" type="xml">
+            <list string="Persediaan Buku &amp; Kartu">
+                <field name="name"/>
+                <field name="jenis_item"/>
+                <field name="jumlah_stok"/>
+                <field name="stok_minimum"/>
+                <field name="jumlah_terpakai"/>
+                <field name="lokasi_penyimpanan"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Permintaan Bahan -->
+    <record id="action_bmt_permintaan_bahan" model="ir.actions.act_window">
+        <field name="name">Permintaan Bahan &amp; Inventaris</field>
+        <field name="res_model">bmt.permintaan.bahan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_permintaan_bahan_list" model="ir.ui.view">
+        <field name="name">bmt.permintaan.bahan.list</field>
+        <field name="model">bmt.permintaan.bahan</field>
+        <field name="arch" type="xml">
+            <list string="Permintaan Bahan">
+                <field name="name"/>
+                <field name="id_pemohon"/>
+                <field name="kode_barang"/>
+                <field name="jumlah_diminta"/>
+                <field name="jumlah_tersedia"/>
+                <field name="hasil_pengecekan"/>
+                <field name="status_permintaan"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Penerimaan Buku -->
+    <record id="action_bmt_penerimaan_buku" model="ir.actions.act_window">
+        <field name="name">Penerimaan Kiriman Buku Pusat</field>
+        <field name="res_model">bmt.penerimaan.buku</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_penerimaan_buku_list" model="ir.ui.view">
+        <field name="name">bmt.penerimaan.buku.list</field>
+        <field name="model">bmt.penerimaan.buku</field>
+        <field name="arch" type="xml">
+            <list string="Penerimaan Kiriman Pusat">
+                <field name="name"/>
+                <field name="no_surat_jalan"/>
+                <field name="tanggal_terima"/>
+                <field name="jumlah_dikirim"/>
+                <field name="jumlah_diterima"/>
+                <field name="status_kesesuaian"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Pemakaian Buku -->
+    <record id="action_bmt_pemakaian_buku" model="ir.actions.act_window">
+        <field name="name">Pemakaian &amp; Rekonsiliasi CS</field>
+        <field name="res_model">bmt.pemakaian.buku</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_pemakaian_buku_list" model="ir.ui.view">
+        <field name="name">bmt.pemakaian.buku.list</field>
+        <field name="model">bmt.pemakaian.buku</field>
+        <field name="arch" type="xml">
+            <list string="Pemakaian Buku Tabungan">
+                <field name="name"/>
+                <field name="id_cs"/>
+                <field name="tanggal_alokasi"/>
+                <field name="jumlah_dialokasikan"/>
+                <field name="jumlah_terpakai"/>
+                <field name="jumlah_rusak"/>
+                <field name="sisa_stok"/>
+                <field name="status_rekonsiliasi"/>
+            </list>
+        </field>
+    </record>
+
+    <menuitem id="menu_bmt_buku_atm_stok" name="Stok Buku &amp; Kartu ATM" parent="menu_bmt_logistik" action="action_bmt_persediaan_buku" sequence="10"/>
+    <menuitem id="menu_bmt_permintaan_bahan" name="Permintaan Bahan Cabang" parent="menu_bmt_logistik" action="action_bmt_permintaan_bahan" sequence="20"/>
+    <menuitem id="menu_bmt_penerimaan_buku" name="Penerimaan Kiriman Pusat" parent="menu_bmt_logistik" action="action_bmt_penerimaan_buku" sequence="30"/>
+    <menuitem id="menu_bmt_pemakaian_buku" name="Pemakaian &amp; Rekonsiliasi CS" parent="menu_bmt_logistik" action="action_bmt_pemakaian_buku" sequence="40"/>
+</odoo>

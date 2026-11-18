@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Profil Risiko -->
+    <record id="action_bmt_profil_risiko" model="ir.actions.act_window">
+        <field name="name">Profil Risiko Nasabah</field>
+        <field name="res_model">bmt.profil.risiko</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_profil_risiko_list" model="ir.ui.view">
+        <field name="name">bmt.profil.risiko.list</field>
+        <field name="model">bmt.profil.risiko</field>
+        <field name="arch" type="xml">
+            <list string="Profil Risiko">
+                <field name="name"/>
+                <field name="id_nasabah"/>
+                <field name="tanggal_asesmen"/>
+                <field name="skor_risiko"/>
+                <field name="kategori_profil"/>
+                <field name="tujuan_investasi"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Produk RD -->
+    <record id="action_bmt_produk_rd" model="ir.actions.act_window">
+        <field name="name">Produk Reksa Dana</field>
+        <field name="res_model">bmt.produk.rd</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_produk_rd_list" model="ir.ui.view">
+        <field name="name">bmt.produk.rd.list</field>
+        <field name="model">bmt.produk.rd</field>
+        <field name="arch" type="xml">
+            <list string="Produk Reksa Dana">
+                <field name="name"/>
+                <field name="nama_produk"/>
+                <field name="jenis_reksa_dana"/>
+                <field name="nama_manajer_investasi"/>
+                <field name="nab_per_up"/>
+                <field name="tingkat_risiko"/>
+                <field name="status_produk"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Transaksi RD -->
+    <record id="action_bmt_transaksi_rd" model="ir.actions.act_window">
+        <field name="name">Transaksi Reksa Dana</field>
+        <field name="res_model">bmt.transaksi.rd</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_transaksi_rd_list" model="ir.ui.view">
+        <field name="name">bmt.transaksi.rd.list</field>
+        <field name="model">bmt.transaksi.rd</field>
+        <field name="arch" type="xml">
+            <list string="Transaksi Reksa Dana">
+                <field name="name"/>
+                <field name="id_nasabah"/>
+                <field name="id_produk_rd"/>
+                <field name="tanggal_pemesanan"/>
+                <field name="nominal_pembelian"/>
+                <field name="jumlah_unit_penyertaan"/>
+                <field name="status_transaksi"/>
+            </list>
+        </field>
+    </record>
+
+    <menuitem id="menu_bmt_profil_risiko" name="Profil Risiko Nasabah" parent="menu_bmt_investasi" action="action_bmt_profil_risiko" sequence="10"/>
+    <menuitem id="menu_bmt_produk_rd" name="Katalog Reksa Dana" parent="menu_bmt_investasi" action="action_bmt_produk_rd" sequence="20"/>
+    <menuitem id="menu_bmt_transaksi_rd" name="Transaksi Pembelian RD" parent="menu_bmt_investasi" action="action_bmt_transaksi_rd" sequence="30"/>
+</odoo>

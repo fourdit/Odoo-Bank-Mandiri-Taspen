@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Rencana Sosialisasi -->
+    <record id="action_bmt_sosialisasi_rencana" model="ir.actions.act_window">
+        <field name="name">Rencana Sosialisasi</field>
+        <field name="res_model">bmt.sosialisasi.rencana</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_sosialisasi_rencana_list" model="ir.ui.view">
+        <field name="name">bmt.sosialisasi.rencana.list</field>
+        <field name="model">bmt.sosialisasi.rencana</field>
+        <field name="arch" type="xml">
+            <list string="Rencana Sosialisasi">
+                <field name="name"/>
+                <field name="tahun_anggaran"/>
+                <field name="judul_rencana"/>
+                <field name="target_peserta"/>
+                <field name="anggaran"/>
+                <field name="status_persetujuan"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Jadwal Sosialisasi -->
+    <record id="action_bmt_sosialisasi_jadwal" model="ir.actions.act_window">
+        <field name="name">Jadwal Sosialisasi</field>
+        <field name="res_model">bmt.sosialisasi.jadwal</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_sosialisasi_jadwal_list" model="ir.ui.view">
+        <field name="name">bmt.sosialisasi.jadwal.list</field>
+        <field name="model">bmt.sosialisasi.jadwal</field>
+        <field name="arch" type="xml">
+            <list string="Jadwal Sosialisasi">
+                <field name="name"/>
+                <field name="id_instansi"/>
+                <field name="tanggal_pelaksanaan"/>
+                <field name="lokasi"/>
+                <field name="materi"/>
+                <field name="status_pelaksanaan"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Hasil Sosialisasi -->
+    <record id="action_bmt_sosialisasi_hasil" model="ir.actions.act_window">
+        <field name="name">Hasil Sosialisasi</field>
+        <field name="res_model">bmt.sosialisasi.hasil</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_sosialisasi_hasil_list" model="ir.ui.view">
+        <field name="name">bmt.sosialisasi.hasil.list</field>
+        <field name="model">bmt.sosialisasi.hasil</field>
+        <field name="arch" type="xml">
+            <list string="Hasil Sosialisasi">
+                <field name="name"/>
+                <field name="id_jadwal_sosialisasi"/>
+                <field name="tanggal_realisasi"/>
+                <field name="jumlah_peserta"/>
+                <field name="jumlah_calon_nasabah"/>
+                <field name="kendala"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Doorprize -->
+    <record id="action_bmt_doorprize" model="ir.actions.act_window">
+        <field name="name">Doorprize Tahunan</field>
+        <field name="res_model">bmt.doorprize</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_doorprize_list" model="ir.ui.view">
+        <field name="name">bmt.doorprize.list</field>
+        <field name="model">bmt.doorprize</field>
+        <field name="arch" type="xml">
+            <list string="Doorprize Tahunan">
+                <field name="name"/>
+                <field name="id_nasabah"/>
+                <field name="tahun_program"/>
+                <field name="jenis_hadiah"/>
+                <field name="nilai_hadiah"/>
+                <field name="status_persetujuan_pelaksanaan"/>
+                <field name="status_penerimaan"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Promo Bunga -->
+    <record id="action_bmt_promo_bunga" model="ir.actions.act_window">
+        <field name="name">Promo Bunga Kompetitif</field>
+        <field name="res_model">bmt.promo.bunga</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_promo_bunga_list" model="ir.ui.view">
+        <field name="name">bmt.promo.bunga.list</field>
+        <field name="model">bmt.promo.bunga</field>
+        <field name="arch" type="xml">
+            <list string="Promo Bunga">
+                <field name="name"/>
+                <field name="id_nasabah"/>
+                <field name="jenis_produk"/>
+                <field name="suku_bunga_promo"/>
+                <field name="syarat_dana_minimum"/>
+                <field name="periode_mulai"/>
+                <field name="periode_selesai"/>
+                <field name="status_persetujuan_nasabah"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Keluhan -->
+    <record id="action_bmt_keluhan" model="ir.actions.act_window">
+        <field name="name">Keluhan Nasabah</field>
+        <field name="res_model">bmt.keluhan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_keluhan_list" model="ir.ui.view">
+        <field name="name">bmt.keluhan.list</field>
+        <field name="model">bmt.keluhan</field>
+        <field name="arch" type="xml">
+            <list string="Keluhan Nasabah">
+                <field name="name"/>
+                <field name="id_nasabah"/>
+                <field name="tanggal_keluhan"/>
+                <field name="kategori_keluhan"/>
+                <field name="media_penyampaian"/>
+                <field name="uraian_keluhan"/>
+                <field name="status_penanganan"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Saran -->
+    <record id="action_bmt_saran" model="ir.actions.act_window">
+        <field name="name">Saran Nasabah</field>
+        <field name="res_model">bmt.saran</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_saran_list" model="ir.ui.view">
+        <field name="name">bmt.saran.list</field>
+        <field name="model">bmt.saran</field>
+        <field name="arch" type="xml">
+            <list string="Saran Nasabah">
+                <field name="name"/>
+                <field name="id_nasabah"/>
+                <field name="tanggal_saran"/>
+                <field name="kategori_saran"/>
+                <field name="uraian_saran"/>
+                <field name="status_evaluasi"/>
+            </list>
+        </field>
+    </record>
+
+    <menuitem id="menu_bmt_sosialisasi_rencana" name="Rencana Sosialisasi" parent="menu_bmt_crm" action="action_bmt_sosialisasi_rencana" sequence="20"/>
+    <menuitem id="menu_bmt_sosialisasi_jadwal" name="Jadwal Sosialisasi" parent="menu_bmt_crm" action="action_bmt_sosialisasi_jadwal" sequence="30"/>
+    <menuitem id="menu_bmt_sosialisasi_hasil" name="Hasil Sosialisasi" parent="menu_bmt_crm" action="action_bmt_sosialisasi_hasil" sequence="40"/>
+    <menuitem id="menu_bmt_doorprize" name="Doorprize Tahunan" parent="menu_bmt_crm" action="action_bmt_doorprize" sequence="50"/>
+    <menuitem id="menu_bmt_promo" name="Promo Bunga Kompetitif" parent="menu_bmt_crm" action="action_bmt_promo_bunga" sequence="60"/>
+    <menuitem id="menu_bmt_keluhan" name="Keluhan Nasabah" parent="menu_bmt_crm" action="action_bmt_keluhan" sequence="70"/>
+    <menuitem id="menu_bmt_saran" name="Saran Nasabah" parent="menu_bmt_crm" action="action_bmt_saran" sequence="80"/>
+</odoo>

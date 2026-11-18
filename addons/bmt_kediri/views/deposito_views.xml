@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_bmt_deposito" model="ir.actions.act_window">
+        <field name="name">Deposito Berjangka</field>
+        <field name="res_model">bmt.deposito</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_bmt_deposito_list" model="ir.ui.view">
+        <field name="name">bmt.deposito.list</field>
+        <field name="model">bmt.deposito</field>
+        <field name="arch" type="xml">
+            <list string="Deposito Berjangka">
+                <field name="name"/>
+                <field name="nasabah_id"/>
+                <field name="no_rekening_sumber"/>
+                <field name="nominal_penempatan"/>
+                <field name="tenor_bulan"/>
+                <field name="suku_bunga_persen"/>
+                <field name="tanggal_mulai"/>
+                <field name="tanggal_jatuh_tempo"/>
+                <field name="opsi_perpanjangan"/>
+                <field name="status_deposito"/>
+            </list>
+        </field>
+    </record>
+
+    <menuitem id="menu_bmt_deposito" name="Deposito Berjangka" parent="menu_bmt_core_banking" action="action_bmt_deposito" sequence="30"/>
+</odoo>

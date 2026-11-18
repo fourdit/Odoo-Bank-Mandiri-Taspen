@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Kompensasi -->
+    <record id="action_bmt_kompensasi" model="ir.actions.act_window">
+        <field name="name">Kompensasi &amp; Penggajian</field>
+        <field name="res_model">bmt.kompensasi</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_kompensasi_list" model="ir.ui.view">
+        <field name="name">bmt.kompensasi.list</field>
+        <field name="model">bmt.kompensasi</field>
+        <field name="arch" type="xml">
+            <list string="Kompensasi &amp; Penggajian">
+                <field name="name"/>
+                <field name="id_karyawan"/>
+                <field name="periode_bulan"/>
+                <field name="periode_tahun"/>
+                <field name="gaji_pokok"/>
+                <field name="tunjangan_jabatan"/>
+                <field name="gaji_bersih"/>
+                <field name="tanggal_pembayaran"/>
+                <field name="status_pembayaran"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Penilaian Kinerja -->
+    <record id="action_bmt_penilaian_kinerja" model="ir.actions.act_window">
+        <field name="name">Penilaian Kinerja</field>
+        <field name="res_model">bmt.penilaian.kinerja</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_penilaian_kinerja_list" model="ir.ui.view">
+        <field name="name">bmt.penilaian.kinerja.list</field>
+        <field name="model">bmt.penilaian.kinerja</field>
+        <field name="arch" type="xml">
+            <list string="Penilaian Kinerja">
+                <field name="name"/>
+                <field name="id_karyawan"/>
+                <field name="periode_penilaian"/>
+                <field name="nilai_akhir"/>
+                <field name="predikat"/>
+                <field name="tanggal_penilaian"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Pelanggaran -->
+    <record id="action_bmt_pelanggaran" model="ir.actions.act_window">
+        <field name="name">Laporan Pelanggaran Pegawai</field>
+        <field name="res_model">bmt.pelanggaran</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_pelanggaran_list" model="ir.ui.view">
+        <field name="name">bmt.pelanggaran.list</field>
+        <field name="model">bmt.pelanggaran</field>
+        <field name="arch" type="xml">
+            <list string="Pelanggaran Pegawai">
+                <field name="name"/>
+                <field name="id_karyawan"/>
+                <field name="tanggal_kejadian"/>
+                <field name="jenis_pelanggaran"/>
+                <field name="memenuhi_syarat_phk"/>
+                <field name="jenis_sanksi"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Pemutusan Kerja -->
+    <record id="action_bmt_pemutusan_kerja" model="ir.actions.act_window">
+        <field name="name">Pemutusan Hubungan Kerja (PHK/Resign)</field>
+        <field name="res_model">bmt.pemutusan.kerja</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_pemutusan_kerja_list" model="ir.ui.view">
+        <field name="name">bmt.pemutusan.kerja.list</field>
+        <field name="model">bmt.pemutusan.kerja</field>
+        <field name="arch" type="xml">
+            <list string="Pemutusan Hubungan Kerja">
+                <field name="name"/>
+                <field name="id_karyawan"/>
+                <field name="jenis_pemutusan"/>
+                <field name="no_sk"/>
+                <field name="nilai_hak_keuangan"/>
+                <field name="status_clearance_aset"/>
+                <field name="status_proses"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Pengaduan IT -->
+    <record id="action_bmt_pengaduan_it" model="ir.actions.act_window">
+        <field name="name">Tiket IT Internal</field>
+        <field name="res_model">bmt.pengaduan.it</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_bmt_pengaduan_it_list" model="ir.ui.view">
+        <field name="name">bmt.pengaduan.it.list</field>
+        <field name="model">bmt.pengaduan.it</field>
+        <field name="arch" type="xml">
+            <list string="Tiket IT Internal">
+                <field name="name"/>
+                <field name="id_karyawan_pelapor"/>
+                <field name="nama_aplikasi"/>
+                <field name="jenis_pengaduan"/>
+                <field name="tingkat_prioritas"/>
+                <field name="status_penanganan"/>
+            </list>
+        </field>
+    </record>
+
+    <menuitem id="menu_bmt_kompensasi" name="Kompensasi &amp; Gaji" parent="menu_bmt_hcm" action="action_bmt_kompensasi" sequence="10"/>
+    <menuitem id="menu_bmt_penilaian" name="Penilaian Kinerja" parent="menu_bmt_hcm" action="action_bmt_penilaian_kinerja" sequence="20"/>
+    <menuitem id="menu_bmt_pelanggaran" name="Pelanggaran Disiplin" parent="menu_bmt_hcm" action="action_bmt_pelanggaran" sequence="30"/>
+    <menuitem id="menu_bmt_pemutusan" name="PHK &amp; Resign (Offboarding)" parent="menu_bmt_hcm" action="action_bmt_pemutusan_kerja" sequence="40"/>
+    <menuitem id="menu_bmt_it" name="Pengaduan &amp; Pemeliharaan IT" parent="menu_bmt_hcm" action="action_bmt_pengaduan_it" sequence="50"/>
+</odoo>

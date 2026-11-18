@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Nasabah Action -->
+    <record id="action_bmt_nasabah" model="ir.actions.act_window">
+        <field name="name">Data Nasabah</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_nasabah', '=', True)]</field>
+        <field name="context">{'default_is_nasabah': True, 'default_customer_rank': 1}</field>
+    </record>
+
+    <!-- Nasabah List View -->
+    <record id="view_bmt_nasabah_list" model="ir.ui.view">
+        <field name="name">res.partner.nasabah.list</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <list string="Daftar Nasabah">
+                <field name="id_nasabah"/>
+                <field name="name" string="Nama Lengkap"/>
+                <field name="nik"/>
+                <field name="jenis_kelamin"/>
+                <field name="jenis_nasabah"/>
+                <field name="status_prioritas"/>
+                <field name="phone"/>
+                <field name="city"/>
+                <field name="status_nasabah"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Instansi Action -->
+    <record id="action_bmt_instansi" model="ir.actions.act_window">
+        <field name="name">Data Instansi Mitra</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_instansi', '=', True)]</field>
+        <field name="context">{'default_is_instansi': True, 'default_is_company': True}</field>
+    </record>
+
+    <!-- Instansi List View -->
+    <record id="view_bmt_instansi_list" model="ir.ui.view">
+        <field name="name">res.partner.instansi.list</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <list string="Daftar Instansi">
+                <field name="id_instansi"/>
+                <field name="name" string="Nama Instansi"/>
+                <field name="jenis_instansi"/>
+                <field name="city"/>
+                <field name="nama_penanggung_jawab"/>
+                <field name="jumlah_pegawai"/>
+                <field name="phone"/>
+            </list>
+        </field>
+    </record>
+
+    <menuitem id="menu_bmt_nasabah" name="Data Nasabah" parent="menu_bmt_core_banking" action="action_bmt_nasabah" sequence="10"/>
+    <menuitem id="menu_bmt_instansi" name="Instansi Mitra" parent="menu_bmt_crm" action="action_bmt_instansi" sequence="10"/>
+</odoo>

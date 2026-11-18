@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Rekening -->
+    <record id="action_bmt_rekening" model="ir.actions.act_window">
+        <field name="name">Rekening Simpanan</field>
+        <field name="res_model">bmt.rekening</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_bmt_rekening_list" model="ir.ui.view">
+        <field name="name">bmt.rekening.list</field>
+        <field name="model">bmt.rekening</field>
+        <field name="arch" type="xml">
+            <list string="Rekening Simpanan">
+                <field name="name"/>
+                <field name="nasabah_id"/>
+                <field name="jenis_rekening"/>
+                <field name="nama_produk"/>
+                <field name="tanggal_pembukaan"/>
+                <field name="saldo"/>
+                <field name="status_rekening"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bmt_rekening_form" model="ir.ui.view">
+        <field name="name">bmt.rekening.form</field>
+        <field name="model">bmt.rekening</field>
+        <field name="arch" type="xml">
+            <form string="Formulir Rekening Simpanan">
+                <header>
+                    <button name="action_approve" type="object" string="Setujui Rekening (OM)" class="btn-primary" invisible="status_rekening != 'Draft'"/>
+                    <button name="action_close" type="object" string="Tutup Rekening" class="btn-danger" invisible="status_rekening == 'Closed'"/>
+                    <field name="status_rekening" widget="statusbar" statusbar_visible="Draft,Aktif,Closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Contoh: REK001"/></h1>
+                    </div>
+                    <group>
+                        <group string="Informasi Nasabah &amp; Rekening">
+                            <field name="nasabah_id"/>
+                            <field name="jenis_rekening"/>
+                            <field name="nama_produk"/>
+                            <field name="tanggal_pembukaan"/>
+                        </group>
+                        <group string="Informasi Keuangan">
+                            <field name="setoran_awal"/>
+                            <field name="saldo"/>
+                            <field name="saldo_minimum"/>
+                        </group>
+                    </group>
+                    <group string="Otorisasi &amp; Penutupan">
+                        <group>
+                            <field name="id_cs_pembuka"/>
+                            <field name="id_penyetuju"/>
+                        </group>
+                        <group>
+                            <field name="tanggal_penutupan"/>
+                            <field name="biaya_penutupan"/>
+                            <field name="alasan_penutupan"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kartu ATM -->
+    <record id="action_bmt_kartu_atm" model="ir.actions.act_window">
+        <field name="name">Kartu ATM</field>
+        <field name="res_model">bmt.kartu.atm</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_bmt_kartu_atm_list" model="ir.ui.view">
+        <field name="name">bmt.kartu.atm.list</field>
+        <field name="model">bmt.kartu.atm</field>
+        <field name="arch" type="xml">
+            <list string="Kartu ATM">
+                <field name="name"/>
+                <field name="rekening_id"/>
+                <field name="nasabah_id"/>
+                <field name="jenis_kartu"/>
+                <field name="tanggal_terbit"/>
+                <field name="masa_berlaku"/>
+                <field name="batas_tarik_harian"/>
+                <field name="status_kartu"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Layanan Digital -->
+    <record id="action_bmt_layanan_digital" model="ir.actions.act_window">
+        <field name="name">Layanan Digital Banking</field>
+        <field name="res_model">bmt.layanan.digital</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_bmt_layanan_digital_list" model="ir.ui.view">
+        <field name="name">bmt.layanan.digital.list</field>
+        <field name="model">bmt.layanan.digital</field>
+        <field name="arch" type="xml">
+            <list string="Layanan Digital">
+                <field name="name"/>
+                <field name="nasabah_id"/>
+                <field name="rekening_id"/>
+                <field name="jenis_layanan"/>
+                <field name="user_id"/>
+                <field name="tanggal_aktivasi"/>
+                <field name="status_layanan"/>
+            </list>
+        </field>
+    </record>
+
+    <menuitem id="menu_bmt_rekening" name="Rekening Simpanan" parent="menu_bmt_core_banking" action="action_bmt_rekening" sequence="20"/>
+    <menuitem id="menu_bmt_kartu_atm" name="Kartu ATM" parent="menu_bmt_core_banking" action="action_bmt_kartu_atm" sequence="50"/>
+    <menuitem id="menu_bmt_digital" name="Layanan Digital" parent="menu_bmt_core_banking" action="action_bmt_layanan_digital" sequence="60"/>
+</odoo>
