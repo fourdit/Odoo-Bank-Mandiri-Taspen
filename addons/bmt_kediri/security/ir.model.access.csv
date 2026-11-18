@@ -29,3 +29,4 @@ access_bmt_persediaan_buku_atm_user,bmt_persediaan_buku_atm.user,model_bmt_perse
 access_bmt_permintaan_bahan_user,bmt_permintaan_bahan.user,model_bmt_permintaan_bahan,base.group_user,1,1,1,1
 access_bmt_penerimaan_buku_user,bmt_penerimaan_buku.user,model_bmt_penerimaan_buku,base.group_user,1,1,1,1
 access_bmt_pemakaian_buku_user,bmt_pemakaian_buku.user,model_bmt_pemakaian_buku,base.group_user,1,1,1,1
+access_bmt_dashboard_user,bmt_dashboard.user,model_bmt_dashboard,base.group_user,1,1,1,1

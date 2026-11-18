@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Server Action Dashboard (Opens Singleton Record) -->
+    <record id="action_bmt_dashboard" model="ir.actions.server">
+        <field name="name">Dashboard Eksekutif Cabang</field>
+        <field name="model_id" ref="model_bmt_dashboard"/>
+        <field name="state">code</field>
+        <field name="code">
+action = model.action_get_dashboard()
+        </field>
+    </record>
+
+    <!-- Form View Dashboard -->
+    <record id="view_bmt_dashboard_form" model="ir.ui.view">
+        <field name="name">bmt.dashboard.form</field>
+        <field name="model">bmt.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Executive Dashboard Bank Mandiri Taspen KC Kediri" create="false" delete="false">
+                <header>
+                    <button name="action_open_nasabah" type="object" string="👥 Nasabah" class="btn-primary"/>
+                    <button name="action_open_rekening" type="object" string="💰 Rekening" class="btn-secondary"/>
+                    <button name="action_open_pinjaman" type="object" string="💳 Pinjaman" class="btn-secondary"/>
+                    <button name="action_open_deposito" type="object" string="📑 Deposito" class="btn-secondary"/>
+                    <button name="action_open_kas" type="object" string="🏦 Kas Teller" class="btn-secondary"/>
+                    <button name="action_open_keluhan" type="object" string="🎧 Keluhan CS" class="btn-secondary"/>
+                    <button name="action_refresh" type="object" string="🔄 Refresh Live Data" class="btn-light"/>
+                </header>
+                <sheet>
+                    <field name="dashboard_html" widget="html" nolabel="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Graph View Pinjaman -->
+    <record id="view_bmt_pinjaman_graph" model="ir.ui.view">
+        <field name="name">bmt.pinjaman.graph</field>
+        <field name="model">bmt.pinjaman</field>
+        <field name="arch" type="xml">
+            <graph string="Grafik Penyaluran Pinjaman" type="bar">
+                <field name="jenis_pinjaman"/>
+                <field name="plafon_disetujui" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Pivot View Pinjaman -->
+    <record id="view_bmt_pinjaman_pivot" model="ir.ui.view">
+        <field name="name">bmt.pinjaman.pivot</field>
+        <field name="model">bmt.pinjaman</field>
+        <field name="arch" type="xml">
+            <pivot string="Analisis Portofolio Pinjaman">
+                <field name="jenis_pinjaman" type="row"/>
+                <field name="status_pinjaman" type="col"/>
+                <field name="plafon_disetujui" type="measure"/>
+                <field name="angsuran_per_bulan" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View Rekening -->
+    <record id="view_bmt_rekening_graph" model="ir.ui.view">
+        <field name="name">bmt.rekening.graph</field>
+        <field name="model">bmt.rekening</field>
+        <field name="arch" type="xml">
+            <graph string="Grafik Saldo Simpanan" type="pie">
+                <field name="jenis_rekening"/>
+                <field name="saldo" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Menu Dashboard: SEQUENCE 1 (Pertama Muncul saat buka Odoo!) -->
+    <menuitem id="menu_bmt_dashboard" 
+              name="📊 Executive Dashboard" 
+              parent="menu_bmt_root" 
+              action="action_bmt_dashboard" 
+              sequence="1"/>
+</odoo>

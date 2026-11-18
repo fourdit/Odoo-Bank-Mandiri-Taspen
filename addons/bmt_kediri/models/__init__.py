@@ -9,3 +9,4 @@ from . import crm_operations
 from . import reksa_dana
 from . import hcm_operations
 from . import logistik
+from . import dashboard

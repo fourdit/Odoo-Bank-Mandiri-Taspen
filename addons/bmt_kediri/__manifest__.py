@@ -24,6 +24,7 @@
         'views/reksa_dana_views.xml',
         'views/hcm_views.xml',
         'views/logistik_views.xml',
+        'views/dashboard_views.xml',
     ],
     'installable': True,
     'application': True,
